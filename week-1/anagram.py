@@ -22,7 +22,8 @@ def search_anagrams(test_words, dictionary):
     return [binary_search(word, dictionary, 0, len(dictionary)-1) for word in test_words]
 
 def main():
-    with open("words.txt") as f1, open("test.txt") as f2:
+    test_file = input("Enter test file name (small.txt/medium.txt/large.txt): ")
+    with open("words.txt") as f1, open(test_file) as f2:
         dictionary = [line.strip() for line in f1]
         test_words = [line.strip() for line in f2]
 
@@ -36,8 +37,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
