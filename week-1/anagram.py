@@ -41,8 +41,11 @@ def main():
     dictionary.sort()
     results = search_anagrams(test_words, dictionary)
 
+    # Create output filename based on input file
+    output_file = "output_" + test_file
+    
     # Open output file to write results
-    with open("output.txt", "w") as f_out:
+    with open(output_file, "w") as f_out:
         for word, anagrams in zip(test_words, results):
             if anagrams:
                 # Find anagram with highest score
