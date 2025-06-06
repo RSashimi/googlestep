@@ -1,0 +1,3 @@
+Doubly Linked List + HashMap..?
+  functools.lru_cache libに限りなく近い気がする。
+  
