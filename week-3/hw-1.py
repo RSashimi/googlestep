@@ -1,4 +1,3 @@
-#! /usr/bin/python3
 
 def read_number(line, index):
     number = 0
@@ -57,10 +56,11 @@ def tokenize(line):
 
 
 def evaluate(tokens):
-    answer = 0
-    tokens.insert(0, {'type': 'PLUS'}) # Insert a dummy '+' token
-    index = 1
+    # handle ONLY multiply and divide
+    new_tokens = []
+    index = 0
     while index < len(tokens):
+<<<<<<< HEAD
         if tokens[index]['type'] == 'NUMBER':
             if tokens[index - 1]['type'] == 'PLUS':
                 answer += tokens[index]['number']
@@ -71,11 +71,41 @@ def evaluate(tokens):
                 answer *= tokens[index]['number']
             elif tokens[index - 1]['type'] == 'DIVIDE':
                 answer /= tokens [index]['number']
+=======
+        token = tokens[index]
+        if token['type'] == 'NUMBER':
+            if index > 0 and tokens[index - 1]['type'] in ('MULTIPLY', 'DIVIDE'):
+                op = tokens[index - 1]['type']
+                prev_token = new_tokens.pop()
+                if op == 'MULTIPLY':
+                    number = prev_token['number'] * token['number']
+                else:
+                    number = prev_token['number'] / token['number']
+                new_tokens.append({'type': 'NUMBER', 'number': number})
+>>>>>>> 4f279ec (modify hw-1)
             else:
-                print('Invalid syntax')
+                new_tokens.append(token)
+        elif token['type'] in ('PLUS', 'MINUS'):
+            new_tokens.append(token)
+        index += 1
+
+    # THEN handle plus and minus
+    new_tokens.insert(0, {'type': 'PLUS'})  
+    answer = 0
+    index = 1
+    while index < len(new_tokens):
+        if new_tokens[index]['type'] == 'NUMBER':
+            if new_tokens[index - 1]['type'] == 'PLUS':
+                answer += new_tokens[index]['number']
+            elif new_tokens[index - 1]['type'] == 'MINUS':
+                answer -= new_tokens[index]['number']
+            else:
+                print("Invalid syntax !!!!")
                 exit(1)
         index += 1
+
     return answer
+
 
 
 def test(line):
@@ -95,6 +125,7 @@ def run_test():
     test("1.0+2.1-3")
     test("2*3")
     test("8/2")
+    test("6+4/2")
     print("==== Test finished! ====\n")
 
 run_test()
