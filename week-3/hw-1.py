@@ -24,6 +24,7 @@ def read_minus(line, index):
     token = {'type': 'MINUS'}
     return token, index + 1
 
+# add * and / features
 def read_multiply(line, index):
     token = {'type': 'MULTIPLY'}
     return token, index + 1
@@ -43,6 +44,7 @@ def tokenize(line):
             (token, index) = read_plus(line, index)
         elif line[index] == '-':
             (token, index) = read_minus(line, index)
+# add * and / features
         elif line[index] == '*':
             (token, index) = read_multiply(line, index)
         elif line[index] == '/':
@@ -64,6 +66,7 @@ def evaluate(tokens):
                 answer += tokens[index]['number']
             elif tokens[index - 1]['type'] == 'MINUS':
                 answer -= tokens[index]['number']
+# add * and / features
             elif tokens[index - 1]['type'] == 'MULTIPLY':
                 answer *= tokens[index]['number']
             elif tokens[index - 1]['type'] == 'DIVIDE':
