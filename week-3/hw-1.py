@@ -1,4 +1,3 @@
-
 def read_number(line, index):
     number = 0
     while index < len(line) and line[index].isdigit():
@@ -54,24 +53,11 @@ def tokenize(line):
         tokens.append(token)
     return tokens
 
-
 def evaluate(tokens):
     # handle ONLY multiply and divide
     new_tokens = []
     index = 0
     while index < len(tokens):
-<<<<<<< HEAD
-        if tokens[index]['type'] == 'NUMBER':
-            if tokens[index - 1]['type'] == 'PLUS':
-                answer += tokens[index]['number']
-            elif tokens[index - 1]['type'] == 'MINUS':
-                answer -= tokens[index]['number']
-# add * and / features
-            elif tokens[index - 1]['type'] == 'MULTIPLY':
-                answer *= tokens[index]['number']
-            elif tokens[index - 1]['type'] == 'DIVIDE':
-                answer /= tokens [index]['number']
-=======
         token = tokens[index]
         if token['type'] == 'NUMBER':
             if index > 0 and tokens[index - 1]['type'] in ('MULTIPLY', 'DIVIDE'):
@@ -82,7 +68,6 @@ def evaluate(tokens):
                 else:
                     number = prev_token['number'] / token['number']
                 new_tokens.append({'type': 'NUMBER', 'number': number})
->>>>>>> 4f279ec (modify hw-1)
             else:
                 new_tokens.append(token)
         elif token['type'] in ('PLUS', 'MINUS'):
@@ -105,8 +90,6 @@ def evaluate(tokens):
         index += 1
 
     return answer
-
-
 
 def test(line):
     tokens = tokenize(line)
