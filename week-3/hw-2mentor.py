@@ -91,50 +91,12 @@ def evaluate_plus_minus(tokens):
                 exit(1)
         index += 1
     return answer
-tokens_after_multiply_divide = evaluate_multiply_divide(new_tokens)
-final_answer = evaluate_plus_minus(tokens_after_multiply_divide)
-return final_answer
-
-
 
 
 def evaluate(tokens):
-    # handle ONLY multiply and divide
-    new_tokens = []
-    index = 0
-    while index < len(tokens):
-        token = tokens[index]
-        if token['type'] == 'NUMBER':
-            if index > 0 and tokens[index - 1]['type'] in ('MULTIPLY', 'DIVIDE'):
-                op = tokens[index - 1]['type']
-                prev_token = new_tokens.pop()
-                if op == 'MULTIPLY':
-                    number = prev_token['number'] * token['number']
-                else:
-                    number = prev_token['number'] / token['number']
-                new_tokens.append({'type': 'NUMBER', 'number': number})
-            else:
-                new_tokens.append(token)
-        elif token['type'] in ('PLUS', 'MINUS'):
-            new_tokens.append(token)
-        index += 1
-
-    # THEN handle plus and minus
-    new_tokens.insert(0, {'type': 'PLUS'})  
-    answer = 0
-    index = 1
-    while index < len(new_tokens):
-        if new_tokens[index]['type'] == 'NUMBER':
-            if new_tokens[index - 1]['type'] == 'PLUS':
-                answer += new_tokens[index]['number']
-            elif new_tokens[index - 1]['type'] == 'MINUS':
-                answer -= new_tokens[index]['number']
-            else:
-                print("Invalid syntax !!!!")
-                exit(1)
-        index += 1
-
-    return answer
+    tokens_after_multiply_divide = evaluate_multiply_divide(new_tokens)
+    final_answer = evaluate_plus_minus(tokens_after_multiply_divide)
+    return final_answer
 
 # fix! 
 
