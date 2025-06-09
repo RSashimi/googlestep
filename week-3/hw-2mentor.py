@@ -77,15 +77,15 @@ def evaluate_multiply_divide(tokens):
 
 def evaluate_plus_minus(tokens):
     new_tokens = []
-    new_tokens.insert(0, {'type': 'PLUS'})  
+    tokens.insert(0, {'type': 'PLUS'})  
     answer = 0
     index = 1
-    while index < len(new_tokens):
-        if new_tokens[index]['type'] == 'NUMBER':
-            if new_tokens[index - 1]['type'] == 'PLUS':
-                answer += new_tokens[index]['number']
-            elif new_tokens[index - 1]['type'] == 'MINUS':
-                answer -= new_tokens[index]['number']
+    while index < len(tokens):
+        if tokens[index]['type'] == 'NUMBER':
+            if tokens[index - 1]['type'] == 'PLUS':
+                answer += tokens[index]['number']
+            elif tokens[index - 1]['type'] == 'MINUS':
+                answer -= tokens[index]['number']
             else:
                 print("Invalid syntax !!!!")
                 exit(1)
