@@ -56,9 +56,6 @@ def tokenize(line):
 def evaluate_multiply_divide(tokens):
     new_tokens = []
     index = 0
-    MULTIPLY_TYPE = 'MULIPLY'
-    DIVIDE_TYPE = 'DIVIDE'
-    NUMBER_TYPE = 'NUMBER'
 
     while index < len(tokens):
         token = tokens[index]
