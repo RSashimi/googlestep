@@ -94,7 +94,7 @@ def evaluate_plus_minus(tokens):
 
 
 def evaluate(tokens):
-    tokens_after_multiply_divide = evaluate_multiply_divide(new_tokens)
+    tokens_after_multiply_divide = evaluate_multiply_divide(tokens)
     final_answer = evaluate_plus_minus(tokens_after_multiply_divide)
     return final_answer
 
